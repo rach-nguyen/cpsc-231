@@ -1,49 +1,10 @@
-from karel import *
-def turn_around():
-	turn_left()
-	turn_left()
-	
-def turn_right():
-	turn_left()
-	turn_left()
-	turn_left()
+import sys
+import random
+prob_else = 5/6
+prob6 = (1-(prob_else**6))
+prob_other = 5/6
+prob12 = ((1-(prob_other**12))-(12*(5**11/6**12)))
 
-def place_end_beepers():
-	while front_is_clear():
-		move()
-		if not front_is_clear():
-			if not beepers_present():
-				put_beeper()
-				turn_around()
-		
-def find_middle():
-	if beepers_present():
-		pick_beeper()
-		turn_around()
-		move()
-		if not beepers_present():
-			put_beeper()
-		while front_is_clear():
-			move()
-			if beepers_present():
-				pick_beeper()
-				turn_around()
-				move()
-				if not beepers_present():
-					put_beeper()
-
-def go_to_middle():
-	if not front_is_clear():
-		turn_around()
-		while not beepers_present():
-			move()
-
-begin_karel_program()
-if front_is_clear():
-	place_end_beepers()
-	find_middle()
-	go_to_middle()
-	
-else:
-	put_beeper()
-end_karel_program()
+print("Estimated likelihood of 1 at least once in 6:", prob6)
+print("Estimated likelihood of 1 at least twice in 12:", prob12)
+print("Therefore, it is more likely to get a 1 at least once when rolling a die 6 times than getting a 1 at least twice in 12 rolls.")
